@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassicUO.Engine.Utility
+namespace FLY.Utility
 {
     public static class Logger
 	{

@@ -11,7 +11,7 @@
 using System;
 #endregion
 
-namespace ClassicUO.Engine
+namespace FLY
 {
 	/// <summary>
 	/// Defines the orientation of the display.

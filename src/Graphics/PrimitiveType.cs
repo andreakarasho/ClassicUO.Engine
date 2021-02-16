@@ -7,7 +7,7 @@
  */
 #endregion
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
 	/// <summary>
 	/// Defines how vertex data is ordered.

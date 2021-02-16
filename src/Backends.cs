@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassicUO.Engine
+namespace FLY
 {
     public enum Backends
     {
+        Detect,
         D3D11,
         OpenGL,
         OpenGL_ES,

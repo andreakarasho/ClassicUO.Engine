@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
     public class GraphicsResource : IDisposable
     {

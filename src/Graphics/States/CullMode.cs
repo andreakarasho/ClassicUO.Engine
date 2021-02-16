@@ -7,7 +7,7 @@
  */
 #endregion
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
 	/// <summary>
 	/// Defines a culling mode for faces in rasterization process.

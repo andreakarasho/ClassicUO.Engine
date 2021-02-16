@@ -7,7 +7,7 @@
  */
 #endregion
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
 	/// <summary>
 	/// Defines how <see cref="GraphicsDevice.Present"/> updates the game window.

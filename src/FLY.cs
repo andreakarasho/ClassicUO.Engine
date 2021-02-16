@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using ClassicUO.Engine.Utility;
+using FLY.Utility;
 using SDL2;
 
-namespace ClassicUO.Engine
+namespace FLY
 {
-    public static class EngineDispatcher
+    public static class FLY
     {
         private static bool _configured;
 
-        public static List<Window> AllWindows = new List<Window>();
+        public static List<FLYWindow> AllWindows = new List<FLYWindow>();
 
 
 
         public static void Configure(Backends backend)
         {
             Debug.Assert(!_configured, "Engine has been already configured!");
+
+            Logger.Initialize();
 
             string osVersion = string.Empty;
 
@@ -47,15 +49,15 @@ namespace ClassicUO.Engine
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Platform.OS = OS.Windows;
+                FLYPlatform.OS = OS.Windows;
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                Platform.OS = OS.Linux;
+                FLYPlatform.OS = OS.Linux;
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                Platform.OS = OS.macOS;
+                FLYPlatform.OS = OS.macOS;
             }
             else
             {
@@ -87,14 +89,28 @@ namespace ClassicUO.Engine
             _configured = true;
         }
 
-        public static void Start()
-        {
-
-        }
 
         public static void Quit()
         {
             SDL.SDL_Quit();
+        }
+
+        public static FLYWindow SpawnNewWindow(string title, int x, int y, int width, int height)
+        {
+            FLYWindow window = new FLYWindow(title, x, y, width, height);
+
+            AllWindows.Add(window);
+
+            return window;
+        }
+
+        public static FLYWindow SpawnNewWindow(IntPtr handle)
+        {
+            FLYWindow window = new FLYWindow(handle);
+
+            AllWindows.Add(window);
+
+            return window;
         }
 
         public static void PollEvent()
@@ -117,7 +133,7 @@ namespace ClassicUO.Engine
 
         private static void CheckBackendCompatibility(Backends backend)
         {
-            switch (Platform.OS)
+            switch (FLYPlatform.OS)
             {
                 case OS.Windows:
 
@@ -172,7 +188,7 @@ namespace ClassicUO.Engine
             {
                 if (osVersion.Equals(compatiblesOS[i], comparison))
                 {
-                    Platform.SUPPORT_GLOBAL_MOUSE = true;
+                    FLYPlatform.SUPPORT_GLOBAL_MOUSE = true;
 
                     break;
                 }
@@ -195,7 +211,7 @@ namespace ClassicUO.Engine
 
         private static void FixWindowsPaintEvent()
         {
-            if (Platform.OS == OS.Windows)
+            if (FLYPlatform.OS == OS.Windows)
             {
                 // TODO:
             }

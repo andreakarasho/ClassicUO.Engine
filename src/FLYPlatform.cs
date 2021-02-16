@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ClassicUO.Engine
+namespace FLY
 {
-    public static class Platform
+    public static class FLYPlatform
     {
         public static bool SUPPORT_GLOBAL_MOUSE = false;
 

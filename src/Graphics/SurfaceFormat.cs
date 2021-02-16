@@ -7,7 +7,7 @@
  */
 #endregion
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
 	/// <summary>
 	/// Defines types of surface formats.

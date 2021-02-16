@@ -7,9 +7,9 @@
  */
 #endregion
 
-using ClassicUO.Engine.Mathematics;
+using FLY.Mathematics;
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
 	public class BlendState : GraphicsResource
 	{

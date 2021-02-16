@@ -7,7 +7,7 @@
  */
 #endregion
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
 	/// <summary>
 	/// Defines how vertex or index buffer data will be flushed during a SetData operation.

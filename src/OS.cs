@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassicUO.Engine
+namespace FLY
 {
     public enum OS
     {

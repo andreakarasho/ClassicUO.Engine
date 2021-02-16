@@ -11,7 +11,7 @@
 using System;
 #endregion
 
-namespace ClassicUO.Engine.Graphics
+namespace FLY.Graphics
 {
 	/// <summary>
 	/// Defines the color channels for render target blending operations.

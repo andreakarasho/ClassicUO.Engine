@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassicUO.Engine.Mathematics
+namespace FLY.Mathematics
 {
     public struct Vector3
     {

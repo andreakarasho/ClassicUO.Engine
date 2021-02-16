@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ClassicUO.Engine.Mathematics;
+using FLY.Mathematics;
 using SDL2;
 
-namespace ClassicUO.Engine
+namespace FLY
 {
-    public unsafe class Window
+    public unsafe class FLYWindow
     {
         private Rectangle _bounds;
 
-        public Window(string title, int x, int y, int width, int height, Backends backend)
+        internal FLYWindow(string title, int x, int y, int width, int height)
         {
             SDL.SDL_WindowFlags flags = (
                 SDL.SDL_WindowFlags.SDL_WINDOW_HIDDEN |
@@ -25,9 +25,11 @@ namespace ClassicUO.Engine
             _bounds.Y = y;
             _bounds.Width = width;
             _bounds.Height = height;
+
+            IsRunning = Handle != IntPtr.Zero;
         }
 
-        public Window(IntPtr handle)
+        internal FLYWindow(IntPtr handle)
         {
             Handle = handle;
         }
@@ -40,12 +42,21 @@ namespace ClassicUO.Engine
         public bool IsRunning { get; private set; }
 
 
+        public void Show()
+        {
+            if (IsRunning)
+            {
+                SDL.SDL_ShowWindow(Handle);
+            }
+        }
+
         public void Close()
         {
             if (IsRunning)
             {
-                SDL.SDL_DestroyWindow(Handle);
                 IsRunning = false;
+
+                SDL.SDL_DestroyWindow(Handle);
             }
         }
 

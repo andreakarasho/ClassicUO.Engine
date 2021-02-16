@@ -8,15 +8,15 @@
 #endregion
 
 #region Using Statements
-using ClassicUO.Engine.Graphics;
+using FLY.Graphics;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using ClassicUO.Engine.Mathematics;
+using FLY.Mathematics;
 
 #endregion
 
-namespace ClassicUO.Engine
+namespace FLY
 {
 	internal static class FNA3D
 	{
