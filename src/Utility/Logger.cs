@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FLY.Utility
 {
-    public static class Logger
+    static class Logger
 	{
 		#region Public Static Variables
 

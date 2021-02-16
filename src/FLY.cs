@@ -113,6 +113,11 @@ namespace FLY
             return window;
         }
 
+        public static void LogInfo(string text) => Logger.LogInfo(text);
+        public static void LogWarn(string text) => Logger.LogWarn(text);
+        public static void LogError(string text) => Logger.LogError(text);
+
+
         public static void PollEvent()
         {
             int count = AllWindows.Count;
