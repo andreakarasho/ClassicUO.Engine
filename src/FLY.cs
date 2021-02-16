@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using FLY.Graphics;
 using FLY.Utility;
 using SDL2;
 
@@ -113,6 +114,12 @@ namespace FLY
             return window;
         }
 
+        public static GraphicsDevice CreateDevice()
+        {
+
+        }
+
+
         public static void LogInfo(string text) => Logger.LogInfo(text);
         public static void LogWarn(string text) => Logger.LogWarn(text);
         public static void LogError(string text) => Logger.LogError(text);
@@ -135,6 +142,11 @@ namespace FLY
                 }
             }
         }
+
+
+
+
+
 
         private static void CheckBackendCompatibility(Backends backend)
         {

@@ -8,6 +8,7 @@ namespace FLY.Graphics
     {
         public string Name { get; set; }
 
+        public IntPtr Handle { get; protected set; }
 
 
         private bool disposedValue;
