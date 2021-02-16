@@ -7,6 +7,8 @@
  */
 #endregion
 
+using ClassicUO.Engine.Mathematics;
+
 namespace ClassicUO.Engine.Graphics
 {
 	public class BlendState : GraphicsResource

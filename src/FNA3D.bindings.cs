@@ -12,6 +12,8 @@ using ClassicUO.Engine.Graphics;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using ClassicUO.Engine.Mathematics;
+
 #endregion
 
 namespace ClassicUO.Engine

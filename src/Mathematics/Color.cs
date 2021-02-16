@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace ClassicUO.Engine.Graphics
+namespace ClassicUO.Engine.Mathematics
 {
     public struct Color : IEquatable<Color>, IEquatable<uint>
     {
@@ -23,7 +23,8 @@ namespace ClassicUO.Engine.Graphics
             (R, G, B, A) = (r, g, b, a);
         }
 
-        public Color(float r, float g, float b, float a) : this((byte) (r / 255.0f), (byte) (g / 255.0f), (byte) (b / 255.0f), (byte) (a = 255.0f))
+        public Color(float r, float g, float b, float a) 
+            : this((byte) (r / 255.0f), (byte) (g / 255.0f), (byte) (b / 255.0f), (byte) (a / 255.0f))
         {
 
         }
@@ -32,15 +33,17 @@ namespace ClassicUO.Engine.Graphics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetValue(uint rgba)
         {
-            R = (byte) rgba;
-            G = (byte) (rgba >> 8);
-            B = (byte) (rgba >> 16);
-            A = (byte) (rgba >> 24);
+            R = (byte) (rgba & 0xFF);
+            G = (byte) ((rgba >> 8) & 0xFF);
+            B = (byte) ((rgba >> 16) & 0xFF);
+            A = (byte) ((rgba >> 24) & 0xFF);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public uint GetValue() => (uint) (R | (G << 8) | (B << 16) | (A << 24));
 
+
+        public Vector4 ToVector4() => new Vector4(R / 255.0f, G / 255.0f, B / 255.0f, A / 255.0f);
 
 
         public bool Equals(Color other)
