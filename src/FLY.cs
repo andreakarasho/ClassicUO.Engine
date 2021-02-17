@@ -114,17 +114,25 @@ namespace FLY
             return window;
         }
 
-        public static GraphicsDevice CreateDevice(FLYWindow window)
+        public static GraphicsDevice CreateDevice(FLYWindow window, in DeviceCreationInfo info)
         {
-            FNA3D.FNA3D_PresentationParameters options = new FNA3D.FNA3D_PresentationParameters();
-            options.backBufferFormat = SurfaceFormat.Color;
-            options.backBufferWidth = window.Bounds.Width;   //TODO: highdpi
-            options.backBufferHeight = window.Bounds.Height; //TODO: highdpi
-            options.depthStencilFormat = DepthFormat.Depth24Stencil8;
-            options.deviceWindowHandle = window.Handle;
-            options.renderTargetUsage = RenderTargetUsage.DiscardContents;
+            FNA3D.FNA3D_PresentationParameters options = new FNA3D.FNA3D_PresentationParameters
+            {
+                backBufferFormat = info.SurfaceFormat,
+                backBufferWidth = info.BackBufferWidth,
+                backBufferHeight = info.BackBufferHeight,
+                depthStencilFormat = info.DepthStencilFormat,
+                deviceWindowHandle = window.Handle,
+                renderTargetUsage = info.RenderTargetUsage
+            };
 
-            GraphicsDevice device = new GraphicsDevice(window.Handle, ref options, false);
+            GraphicsDevice device = new GraphicsDevice(window, ref options,
+#if DEBUG
+                                                       true
+#else
+                                                       info.DebugMode
+#endif
+                                                       );
 
             return device;
         }
