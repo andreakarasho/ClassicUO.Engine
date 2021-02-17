@@ -13,7 +13,7 @@ namespace FLY
     {
         private static bool _configured;
 
-        public static List<FLYWindow> AllWindows = new List<FLYWindow>();
+        public static LinkedList<FLYWindow> AllWindows = new LinkedList<FLYWindow>();
 
 
 
@@ -100,7 +100,7 @@ namespace FLY
         {
             FLYWindow window = new FLYWindow(title, x, y, width, height);
 
-            AllWindows.Add(window);
+            AllWindows.AddLast(window);
 
             return window;
         }
@@ -109,14 +109,24 @@ namespace FLY
         {
             FLYWindow window = new FLYWindow(handle);
 
-            AllWindows.Add(window);
+            AllWindows.AddLast(window);
 
             return window;
         }
 
-        public static GraphicsDevice CreateDevice()
+        public static GraphicsDevice CreateDevice(FLYWindow window)
         {
+            FNA3D.FNA3D_PresentationParameters options = new FNA3D.FNA3D_PresentationParameters();
+            options.backBufferFormat = SurfaceFormat.Color;
+            options.backBufferWidth = window.Bounds.Width;   //TODO: highdpi
+            options.backBufferHeight = window.Bounds.Height; //TODO: highdpi
+            options.depthStencilFormat = DepthFormat.Depth24Stencil8;
+            options.deviceWindowHandle = window.Handle;
+            options.renderTargetUsage = RenderTargetUsage.DiscardContents;
 
+            GraphicsDevice device = new GraphicsDevice(window.Handle, ref options, false);
+
+            return device;
         }
 
 
@@ -127,18 +137,27 @@ namespace FLY
 
         public static void PollEvent()
         {
-            int count = AllWindows.Count;
-
             while (SDL.SDL_PollEvent(out SDL.SDL_Event e) != 0)
             {
-                for (int i = 0; i < count; ++i)
-                {
-                    if (AllWindows[i].IsRunning && SDL.SDL_GetWindowID(AllWindows[i].Handle) == e.window.windowID)
-                    {
-                        AllWindows[i].ProcessEvent(ref e);
+                LinkedListNode<FLYWindow> wnd = AllWindows.First;
 
-                        break;
+                while (wnd != null)
+                {
+                    LinkedListNode<FLYWindow> next = wnd.Next;
+
+                    if (wnd.Value.IsRunning && SDL.SDL_GetWindowID(wnd.Value.Handle) == e.window.windowID)
+                    {
+                        wnd.Value.ProcessEvent(ref e);
+
+                        next = null;
                     }
+
+                    if (!wnd.Value.IsRunning)
+                    {
+                        AllWindows.Remove(wnd);
+                    }
+
+                    wnd = next;
                 }
             }
         }

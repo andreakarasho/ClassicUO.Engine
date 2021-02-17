@@ -23,10 +23,22 @@ namespace FLY.Mathematics
             (R, G, B, A) = (r, g, b, a);
         }
 
-        public Color(float r, float g, float b, float a) 
-            : this((byte) (r / 255.0f), (byte) (g / 255.0f), (byte) (b / 255.0f), (byte) (a / 255.0f))
+        public Color(Vector3 vec) : this(vec.X, vec.Y, vec.Z, 1f)
         {
 
+        }
+
+        public Color(Vector4 vec) : this(vec.X, vec.Y, vec.Z, vec.W)
+        {
+
+        }
+
+        public Color(float r, float g, float b, float a = 1f) 
+        {
+            R = (byte) FLYMath.Clamp(r * 255, byte.MinValue, byte.MaxValue);
+            G = (byte) FLYMath.Clamp(g * 255, byte.MinValue, byte.MaxValue);
+            B = (byte) FLYMath.Clamp(b * 255, byte.MinValue, byte.MaxValue);
+            A = (byte) FLYMath.Clamp(a * 255, byte.MinValue, byte.MaxValue);
         }
 
 
@@ -72,5 +84,10 @@ namespace FLY.Mathematics
         public static readonly Color Transparent    = 0x00_00_00_00;
         public static readonly Color White          = 0xFF_FF_FF_FF;
         public static readonly Color Black          = 0xFF_00_00_00;
+        public static readonly Color AliceBlue = new Color(240, 248, 255);
+        public static readonly Color CornflowerBlue = new Color(100, 149, 237);
+        public static readonly Color Red = new Color(1f, 0f, 0f);
+        public static readonly Color LimeGreen = 0xff32cd32;
+        public static readonly Color DarkRed = 0xff00008b;
     }
 }

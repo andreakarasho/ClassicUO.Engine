@@ -243,8 +243,14 @@ namespace FLY
         public event Action OnEnter, OnLeave;
         public event Action<char> OnTextInput;
         public event Action<TextEditingEventArg> OnTextEditing;
+        public event Action<DropEventArg> OnDataDrop;
     }
 
+
+    public struct DropEventArg
+    {
+
+    }
 
     public struct TextEditingEventArg
     {
